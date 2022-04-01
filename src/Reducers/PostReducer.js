@@ -72,9 +72,6 @@ export default function (state = initialState, action) {
                             return {
                                 ...state,
                                 cart: [...state.cart, action.mycart],
-                                    addedIds: [...state.addedIds, action.mycart.id],
-                                    totalPrice: [...state.cartPrices, action.mycart.price],
-                                    cartCounter: state.cartCounter + 1
                             }
 
 
@@ -91,7 +88,6 @@ export default function (state = initialState, action) {
                             return {
                                 ...state,
                                 cart: state.cart.filter(item => item !== action.object),
-                                cartCounter: state.cartCounter - 1
                             }
 
                         case UPDATE_CART:
