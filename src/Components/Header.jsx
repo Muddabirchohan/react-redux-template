@@ -5,13 +5,13 @@ import CartIcon from "./CartIcon";
 const Header = (props) => {
   return (
     <div className="header">
-      <div class="header">
+      <div className="header">
         {/* <a href="#default" class="logo">Fake Store </a> */}
         <Link to="/" className="header-head">
           {" "}
           F-STORE{" "}
         </Link>
-        <div class="header-right">
+        <div className="header-right">
           <Link to="/home" className="header-sub-head">
             {" "}
             Home{" "}

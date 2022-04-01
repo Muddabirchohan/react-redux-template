@@ -4,14 +4,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const ProductsList = (props) => {
-  console.log("props",props)
   useEffect(() => {
     props.fetchPosts();
   }, []);
 
   if(props.loader){
     return (
-        <div class="loader"></div>
+        <div className="loader"></div>
 
     )
   }
@@ -19,16 +18,18 @@ const ProductsList = (props) => {
   return (
     <div className="parent-products">
       {props &&
-        props.items.map((item) => {
+        props.items.map((item,index) => {
           return (
-            <Link to={`/product/${item.id}`}>
-            <div className="products-individual">
+          
+            <div key={index} className="products-individual">
+                <Link  to={`/product/${item.id}`}>
               <img  src={item.image} style={{width: "400px"}}/>
-              <div className="tags"> 
-              <span class="price-tag"><a href="javascript:void()">{item.price}</a></span>
-              </div> 
+              {/* <div className="tags"> 
+              <span className="price-tag"><a href="#">{item.price}</a></span>
+              </div>  */}
+              </Link>
+
             </div>
-            </Link>
           );
         })}
     </div>

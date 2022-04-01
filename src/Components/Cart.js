@@ -83,7 +83,7 @@ const Cart = (props) => {
                                     return (
                                         <tr key={index}>
               <td> <img  src={item.image} /> </td> 
-            <td> <span class="price-tag">{item.price}</span> </td>
+            <td> <span className="price-tag">{item.price}</span> </td>
             <td> quantiity:  {item.quantity} </td>
             <td> <Button className='btn btn-danger' onClick={()=>removeitemCart(item)}> remove </Button> </td>
             <td> 

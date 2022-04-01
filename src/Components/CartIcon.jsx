@@ -5,7 +5,7 @@ import cartIcon from "./../images/cart.jpg"
 import localCart from "../utils/cartPersistLocalStorage";
 
 const CartIcon = (props) => {
-  return <Link to="/cart"> <img style={{width: "30px",height: "30px"}} src={cartIcon}/>   </Link>
+  return <Link to="/cart"> <img style={{width: "30px",height: "30px"}} src={cartIcon}/> {props.cart?.length}  </Link>
 };
 
 const mapStateToProps = (state) => ({
