@@ -2,16 +2,35 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import registerServiceWorker from './registerServiceWorker';
+import { Provider} from 'react-redux';
+import { BrowserRouter , Switch ,Route} from 'react-router-dom';
+import store from './Store'
+import Cart from './Components/Cart';
+import productsList from './Components/productsList';
+import Layout from "./Components/Layout";
+import ProductDescription from './Components/ProductDescription';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<div className='container-fluid'>
+    <ToastContainer />
+<Provider store={store}> 
+<BrowserRouter >
+
+<Layout>
+
+    <Switch> 
+    <Route path="/" component={productsList} exact={true}> </Route>
+    <Route path="/products" component={productsList}> </Route>
+    <Route path="/product/:id" component={ProductDescription}> </Route>
+    <Route path="/cart" component={Cart}> </Route>
+    </Switch>
+    </Layout>
+
+    </BrowserRouter>
+    </Provider></div>,
+     document.getElementById('root'));
+registerServiceWorker();
