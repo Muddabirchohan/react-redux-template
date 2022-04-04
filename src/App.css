@@ -114,7 +114,6 @@ td {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 50px;
 }
 
 .products-individual {
@@ -125,7 +124,6 @@ img {
   float: left;
   width:  400px;
   height: 400px;
-  object-fit: cover;
 }
 
 
@@ -184,6 +182,9 @@ img {
   }
 }
 
+.img-container {
+   object-fit: cover; 
+}
 
 .tags a {
   float: left;
@@ -261,4 +262,26 @@ border-spacing: 10px;
   color: #004d91 !important;
   font-weight: 700;
 
+}
+
+
+.container {
+  position: relative;
+  height: 100px;
+}
+.tag {
+  float: left;
+  position: absolute;
+  left: 20px;
+  top: 120px;
+  z-index: 1000;
+  background-color: #4c7cc2;
+  padding: 12px;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+
+.pdp-name {
+  font-weight: 800;
 }

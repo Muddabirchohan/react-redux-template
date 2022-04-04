@@ -81,15 +81,11 @@ const Cart = (props) => {
                         <table striped bordered condensed hover>
                             <thead>
                                 <tr>
-
                                     <th>Display</th>
                                     <th>Name</th>
-
                                     <th>Price</th>
                                     <th>Remove</th>
                                     <th> quantity </th>
-
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,7 +93,7 @@ const Cart = (props) => {
                                     return (
                                         <tr key={index}>
 
-              <td> <img  src={item?.image} style={{width: 100,height: 100}}/> </td> 
+              <td> <img  src={item?.image} style={{objectFit: "contain"}}/> </td> 
               <td> {item?.title} </td> 
 
             <td> <span className="price-tag">{item?.price * item?.quantity}</span> </td>

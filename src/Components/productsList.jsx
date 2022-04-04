@@ -8,27 +8,22 @@ const ProductsList = (props) => {
     props.fetchPosts();
   }, []);
 
-  if(props.loader){
-    return (
-        <div className="loader"></div>
-
-    )
+  if (props.loader) {
+    return <div className="loader"></div>;
   }
 
   return (
     <div className="parent-products">
       {props &&
-        props.items.map((item,index) => {
+        props.items.map((item, index) => {
           return (
-          
             <div key={index} className="products-individual">
-                <Link  to={`/product/${item.id}`}>
-              <img  src={item.image} style={{width: "400px"}}/>
-              {/* <div className="tags"> 
-              <span className="price-tag"><a href="#">{item.price}</a></span>
-              </div>  */}
+              <Link to={`/product/${item.id}`}>
+              <div class="container">
+                <div class="tag">{item?.price}</div>
+                <img src={item.image} style={{ objectFit: "contain" }} />
+              </div>
               </Link>
-
             </div>
           );
         })}
@@ -38,7 +33,7 @@ const ProductsList = (props) => {
 
 const mapStateToProps = (state) => ({
   items: state.posts.items,
-  loader: state.posts.loader
+  loader: state.posts.loader,
 });
 
 export default connect(mapStateToProps, { addToCart, fetchPosts })(

@@ -77,7 +77,7 @@ const ProductDescription = (props) => {
       <div className="col col-lg-6"> 
       <p>
         {" "}
-        <img src={image} style={{height: "100%"}} />{" "}
+        <img src={image} style={{objectFit: "contain"}} />{" "}
       </p>
       </div>
 
