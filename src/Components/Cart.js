@@ -7,8 +7,10 @@ import { removeFromCart, updateCart } from '../actions/PostActions';
 import '../App.css';
 import shop from '../images/shop.png';
 import { toast } from 'react-toastify';
-import { Button } from 'react-bootstrap';
+import { Button ,ButtonGroup} from 'react-bootstrap';
 import CartError from './ErrorHandlers/CartError';
+import dustbinIcon from "./../images/dustbin.jpg"
+
 
 const Cart = (props) => {
 
@@ -40,23 +42,33 @@ const Cart = (props) => {
             });
       }
 
-    //   const addQuantity = (item) => {
-    //     const cartCopy = [...cart]
-    //     const cartIndex =  cartCopy.findIndex((obj => obj.id == item.id))
-    //     cartCopy[cartIndex].quantity += 1;     
-    //     let cartString = JSON.stringify(cartCopy)
-    //     localStorage.setItem('cart', cartString)
-    //     props.updateCart(item.id,"add")
-    //   }
+      const addQuantity = (item) => {
+   
+        props.updateCart(item.id,"add")
+        toast.success(`Cart Updated`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+      }
 
-    //   const RemoveQuantity = (item) => {
-    //     const cartCopy = [...cart]
-    //     const cartIndex =  cartCopy.findIndex((obj => obj.id == item.id))
-    //     cartCopy[cartIndex].quantity -= 1;  
-    //     const cartString = JSON.stringify(cartCopy)
-    //     localStorage.setItem('cart', cartString)
-    //     props.updateCart(item.id,"sub")
-    //  }
+      const RemoveQuantity = (item) => {
+
+        props.updateCart(item.id,"sub")
+        toast.success(`Cart Updated`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+     }
 
       if(props.cart.length === 0){
           return <CartError/>
@@ -69,11 +81,13 @@ const Cart = (props) => {
                         <table striped bordered condensed hover>
                             <thead>
                                 <tr>
+
+                                    <th>Display</th>
                                     <th>Name</th>
+
                                     <th>Price</th>
-                                    <th>quantity</th>
                                     <th>Remove</th>
-                                    <th> Update </th>
+                                    <th> quantity </th>
 
 
                                 </tr>
@@ -82,14 +96,19 @@ const Cart = (props) => {
                                 {props.cart.map((item, index) => {
                                     return (
                                         <tr key={index}>
-              <td> <img  src={item.image} /> </td> 
-            <td> <span className="price-tag">{item.price}</span> </td>
-            <td> quantiity:  {item.quantity} </td>
-            <td> <Button className='btn btn-danger' onClick={()=>removeitemCart(item)}> remove </Button> </td>
-            <td> 
 
-            {/* <button onClick={()=>addQuantity(item)}> + </button> 
-            <button onClick={()=>RemoveQuantity(item)}> - </button>  */}
+              <td> <img  src={item?.image} style={{width: 100,height: 100}}/> </td> 
+              <td> {item?.title} </td> 
+
+            <td> <span className="price-tag">{item?.price * item?.quantity}</span> </td>
+            <td> <Button style={{backgroundColor: "white",border: "white"}} onClick={()=>removeitemCart(item)}> <img style={{width: "30px",height: "30px"}} src={dustbinIcon}/> </Button> </td>
+            <td> <ButtonGroup aria-label="Basic example">
+            <Button onClick={()=>addQuantity(item)}> + </Button> 
+            <span style={{padding: '5px'}}>   {item?.quantity} </span>
+            <Button disabled={item?.quantity <=1} onClick={()=>RemoveQuantity(item)}> - </Button> 
+</ButtonGroup>
+
+          
             </td>
             </tr>
                                     )

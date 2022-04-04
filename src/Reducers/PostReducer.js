@@ -67,56 +67,62 @@ export default function (state = initialState, action) {
                                 item: action.payload
                             }
 
-                        case ADD_TO_CART:
-                            // state.cart = localCart || state.cart;
-                            return {
-                                ...state,
-                                cart: [...state.cart, action.mycart],
-                            }
+                            case ADD_TO_CART:
+                                // state.cart = localCart || state.cart;
+                                return {
+                                    ...state,
+                                    cart: [...state.cart, action.mycart],
+                                }
 
 
-                        case GET_SINGLE_PRODUCT:
-                            return {
-                                ...state,
-                                description: action.obj
-                            }
-                                    
+                                case GET_SINGLE_PRODUCT:
+                                    return {
+                                        ...state,
+                                        description: action.obj
+                                    }
 
 
-                        case REMOVE_POST:
-                            // state.cart = localCart || state.cart;
-                            return {
-                                ...state,
-                                cart: state.cart.filter(item => item !== action.object),
-                            }
 
-                        case UPDATE_CART:
-                            // state.cart = localCart || state.cart;
-                            const cartItem =  state.cart.findIndex((obj => obj.id == action.id))
-                            
-                            action.actionType === "add" ?  state.cart[cartItem].quantity += 1 : state.cart[cartItem].quantity -= 1
+                                    case REMOVE_POST:
+                                        // state.cart = localCart || state.cart;
+                                        return {
+                                            ...state,
+                                            cart: state.cart.filter(item => item !== action.object),
+                                        }
 
-                            return {
-                                ...state,
-                                cart: state.cart
-                            }
+                                        case UPDATE_CART:
+                                            // state.cart = localCart || state.cart;
+                                            const updatedCart = state.cart.map(cartItem => {
+                                                if (cartItem.id === action.id) {
+                                                    return {
+                                                        ...cartItem,
+                                                        quantity: action.actionType === "add" ? cartItem.quantity + 1 : cartItem.quantity - 1
+                                                    }
+                                                }
+                                                return cartItem
+                                            })
+
+                                            return {
+                                                ...state,
+                                                cart: updatedCart
+                                            }
 
 
-                        case GET_QUANTITY:
-                            return {
-                                ...state,
-                                quantity: action.myquantity,
-                                    id: action.myid
-                            }
+                                            case GET_QUANTITY:
+                                                return {
+                                                    ...state,
+                                                    quantity: action.myquantity,
+                                                        id: action.myid
+                                                }
 
-                        case USER_AUTHENTICATION:
-                            return {
-                                ...state,
-                                username: action.name,
-                                    password: action.password
-                            }
+                                                case USER_AUTHENTICATION:
+                                                    return {
+                                                        ...state,
+                                                        username: action.name,
+                                                            password: action.password
+                                                    }
 
-                        default:
-                            return state;
+                                                    default:
+                                                        return state;
     }
 }

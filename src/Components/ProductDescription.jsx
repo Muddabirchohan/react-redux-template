@@ -21,7 +21,7 @@ const ProductDescription = (props) => {
   
     let {id} = item;
     
-    let existingItem = cart.find(cartItem => cartItem.id == id);
+    let existingItem = cart?.find(cartItem => cartItem.id == id);
     
     if (existingItem) {
         existingItem.quantity += 1
